@@ -1,0 +1,7 @@
+# Include the license file
+include LICENSE
+# Include the readme file
+include README.md
+
+# Include module
+recursive-include wtf_tinymce *
