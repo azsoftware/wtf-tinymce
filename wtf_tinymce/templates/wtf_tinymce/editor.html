@@ -1,20 +1,15 @@
-{% macro append_tinymce_css() -%}
-    <link href="{{ url_for('wtf_tinymce.static', filename='vendor/tinymce/js/tinymce/skins/lightgray/skin.min.css') }}"
-          rel="stylesheet">
-{% endmacro %}
-
-{% macro append_tinymce_js() -%}
+{% macro init_wtf_tinymce(default_content_css) -%}
     <script src="{{ url_for('wtf_tinymce.static', filename='vendor/tinymce/js/tinymce/jquery.tinymce.min.js') }}"></script>
-    <script src="{{ url_for('wtf_tinymce.static', filename='vendor/tinymce/js/tinymce/tinymce.min.js', v='4.4.0') }}"></script>
+    <script src="{{ url_for('wtf_tinymce.static', filename='vendor/tinymce/js/tinymce/tinymce.min.js') }}"></script>
 
     {% for field in form -%}
         {%- if field.widget.input_type == 'tinymce' -%}
-            {{ add_tinymce_editor(field) }}
+            {{ append_tinymce_editor(field, default_content_css) }}
         {%- endif %}
     {%- endfor %}
 {% endmacro %}
 
-{% macro add_tinymce_editor(field) -%}
+{% macro append_tinymce_editor(field, default_content_css) -%}
   <script type="text/javascript">
     $(function() {
       $('textarea#{{ field.id }}').removeClass('richtext').tinymce({
@@ -22,7 +17,9 @@
         {{ k|tojson }}: {{ v|tojson }},
         {%- endfor %}
         // Content CSS
-        content_css: {{ (field.content_css or url_for('static', filename='css/tinymce.css'))|tojson }},
+        {% if field.content_css or default_content_css %}
+        content_css: {{ (field.content_css or url_for('static', filename=default_content_css))|tojson }},
+        {% endif %}
         // Focus/blur indicators
         setup: function(ed) {
           ed.on('focus', function(e) {
@@ -31,7 +28,7 @@
           ed.on('blur', function(e) {
             $(ed.editorContainer).removeClass('active');
           });
-        } // End of setup keyval
+        }
       });
     });
   </script>
