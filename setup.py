@@ -1,5 +1,6 @@
 import os
 import re
+from io import open
 from setuptools import setup, find_packages
 
 root = os.path.abspath(os.path.dirname(__file__))
