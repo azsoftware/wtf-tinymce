@@ -46,7 +46,7 @@ setup(
         ],
     author='Alexander Zhygailo',
     author_email='alexander777vz@gmail.com',
-    url='https://github.com/azsoftware/wtf-tinymce',
+    url='https://github.com/azsoftware/wtf_tinymce',
     keywords='wtf-tinymce',
     packages=find_packages(),
     include_package_data=True,
