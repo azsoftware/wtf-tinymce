@@ -42,7 +42,7 @@ setup(
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Operating System :: OS Independent",
         "Intended Audience :: Developers",
-        "Development Status :: 3 - Alpha",
+        "Development Status :: 5 - Production/Stable",
         "Topic :: Software Development :: Libraries",
         ],
     author='Alexander Zhygailo',
@@ -55,5 +55,6 @@ setup(
     test_suite='tests',
     install_requires=requires,
     tests_require=[],
-    dependency_links=[]
+    dependency_links=[],
+    license='GNU General Public License v3 (GPLv3)',
 )
