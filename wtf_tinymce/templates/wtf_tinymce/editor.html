@@ -14,12 +14,16 @@
     $(function() {
       $('textarea#{{ field.id }}').removeClass('richtext').tinymce({
         {%- for k, v in field.tinymce_options.items() %}
-        {{ k|tojson }}: {{ v|tojson }},
+            {%- if v is string and 'function' in v %}
+                {{ k|tojson }}: {{ v|safe }},
+            {%- else %}
+                {{ k|tojson }}: {{ v|tojson }},
+            {%- endif %}
         {%- endfor %}
         // Content CSS
-        {% if field.content_css or default_content_css %}
+        {%- if field.content_css or default_content_css %}
         content_css: {{ (field.content_css or url_for('static', filename=default_content_css))|tojson }},
-        {% endif %}
+        {%- endif %}
         // Focus/blur indicators
         setup: function(ed) {
           ed.on('focus', function(e) {
