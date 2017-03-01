@@ -31,7 +31,7 @@ requires = [
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
-    name='wtf_tinymce',
+    name='wtf-tinymce',
     version=version,
     description='TinyMCE editor extension for WTForms',
     long_description=long_description,
@@ -42,18 +42,19 @@ setup(
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Operating System :: OS Independent",
         "Intended Audience :: Developers",
-        "Development Status :: 3 - Alpha",
+        "Development Status :: 5 - Production/Stable",
         "Topic :: Software Development :: Libraries",
         ],
     author='Alexander Zhygailo',
     author_email='alexander777vz@gmail.com',
-    url='https://github.com/azsoftware/wtf_tinymce',
-    keywords='wtf_tinymce, wtforms, tinymce, richeditor',
+    url='https://github.com/azsoftware/wtf-tinymce',
+    keywords='wtf-tinymce, wtforms, tinymce, richeditor',
     packages=find_packages(),
     include_package_data=True,
     zip_safe=False,
     test_suite='tests',
     install_requires=requires,
     tests_require=[],
-    dependency_links=[]
+    dependency_links=[],
+    license='GNU General Public License v3 (GPLv3)',
 )
