@@ -33,7 +33,6 @@ class TinyMceField(TextAreaField):
         default=None,
         widget=None,
         _form=None,
-        _name=None,
         _prefix='',
 
         # Additional fields
@@ -48,7 +47,7 @@ class TinyMceField(TextAreaField):
     ):
         super(TinyMceField, self).__init__(
             label=label, validators=validators, filters=filters, description=description, id=id, default=default,
-            widget=widget, _form=_form, _name=_name, _prefix=_prefix, **kwargs
+            widget=widget, _form=_form, _prefix=_prefix, **kwargs
         )
 
         if tinymce_options is None:
