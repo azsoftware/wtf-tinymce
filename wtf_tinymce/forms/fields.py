@@ -106,7 +106,7 @@ class TinyMceField(TextAreaField):
                 attributes=self.sanitize_attributes
             )
 
-        if self.linkify:
+        if self.linkify and self.data:
             if self.nofollow:
                 self.data = bleach.linkify(self.data)
             else:
