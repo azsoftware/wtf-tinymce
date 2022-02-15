@@ -41,6 +41,7 @@ class TinyMceField(TextAreaField):
         linkify=True,
         nofollow=True,
         tinymce_options=None,
+        sanitize=False,
         sanitize_tags=None,
         sanitize_attributes=None,
         **kwargs
@@ -62,10 +63,10 @@ class TinyMceField(TextAreaField):
         tinymce_options.setdefault('width', "100%")
         tinymce_options.setdefault('height', "400")
         tinymce_options.setdefault('min_height', "100")
-        tinymce_options.setdefault(
-            'valid_elements',
-            "p,br,strong/b,em/i,sup,sub,h3,h4,h5,h6,ul,ol,li,a[!href|title|target],blockquote,code"
-        )
+        # tinymce_options.setdefault(
+        #     'valid_elements',
+        #     "p,br,strong/b,em/i,sup,sub,h3,h4,h5,h6,ul,ol,li,a[!href|title|target],blockquote,code"
+        # )
         tinymce_options.setdefault('statusbar', False)
         tinymce_options.setdefault('menubar', False)
         tinymce_options.setdefault('resize', True)
@@ -85,6 +86,7 @@ class TinyMceField(TextAreaField):
         self.tinymce_options = tinymce_options
 
         self._content_css = content_css
+        self.sanitize = sanitize
         self.sanitize_tags = sanitize_tags
         self.sanitize_attributes = sanitize_attributes
 
@@ -98,11 +100,12 @@ class TinyMceField(TextAreaField):
     def process_formdata(self, value_list):
         super(TinyMceField, self).process_formdata(value_list)
         # Sanitize data
-        self.data = bleach.clean(
-            self.data,
-            tags=self.sanitize_tags,
-            attributes=self.sanitize_attributes
-        )
+        if self.sanitize:
+            self.data = bleach.clean(
+                self.data,
+                tags=self.sanitize_tags,
+                attributes=self.sanitize_attributes
+            )
 
         if self.linkify:
             if self.nofollow:

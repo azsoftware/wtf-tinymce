@@ -4,7 +4,7 @@ TinyMCE editor extension for WTForms
 ## 1. Installation
 Under your project environment run:
 
-    $ pip install wtf_tinymce
+    $ pip install wtf-tinymce
 
 ## 2. Configuring
 ### 2.1. Initializing module
