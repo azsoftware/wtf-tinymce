@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+<!-- Import wtf-tinymce template -->
+{% import 'wtf_tinymce/editor.html' as tinymce with context %}
+
+{% block content %}
+  <form method="POST" action="/submit">
+    {{ form.csrf_token }}
+    <!-- Rendering form field -->
+    {{ form.desc.label }} {{ form.desc() }}
+    <br>
+    <input type="submit" value="Submit">
+  </form>
+{% endblock %}
+
+
+{% block tail %}
+  <!-- Initialize wtf-tinymce -->
+  {{ tinymce.init_wtf_tinymce() }}
+{% endblock %}

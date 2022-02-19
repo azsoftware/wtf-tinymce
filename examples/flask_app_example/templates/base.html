@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WTF-TinyMCE Example App</title>
+</head>
+<body>
+  <section class="content">
+    <header>
+      {% block header %}{% endblock %}
+    </header>
+    {% for message in get_flashed_messages() %}
+      <div class="flash">{{ message }}</div>
+    {% endfor %}
+    {% block content %}{% endblock %}
+  </section>
+
+  <!-- JQuery is required for TinyMCE -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  {% block tail %}{% endblock %}
+</body>
+</html>
